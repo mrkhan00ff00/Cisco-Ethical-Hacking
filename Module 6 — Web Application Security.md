@@ -1,4 +1,4 @@
-# Module 6 — Web Application Security
+
 
 ## 1. Module Overview
 
