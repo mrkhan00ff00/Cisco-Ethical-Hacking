@@ -8,7 +8,7 @@ This repository documents key concepts related to ethical hacking, penetration t
 
 ## 📚 Course Modules
 
-### Module 1 — Ethical Hacking & Penetration Testing
+### Module 1 — Ethical Hacking and Penetration Testing
 
 * Ethical hacking fundamentals
 * Penetration testing concepts
@@ -41,14 +41,20 @@ This repository documents key concepts related to ethical hacking, penetration t
 * Phishing
 * Human-based attacks
 
-### Module 5 — Wireless Security
+### Module 5 — Exploiting Wireless Vulnerabilities
 
-* Wireless vulnerabilities
+* Wireless security
 * Rogue access points
 * Evil Twin attacks
-* Deauthentication
-* WEP/WPA security
-* Wireless attack techniques
+* Deauthentication attacks
+* Wireless reconnaissance
+* WEP and WPA/WPA2 security
+* KRACK
+* WPA3 vulnerabilities
+* WPS attacks
+* KARMA attacks
+* Bluetooth security
+* RFID attacks
 
 ### Module 6 — Web Application Security
 
@@ -65,7 +71,7 @@ This repository documents key concepts related to ethical hacking, penetration t
 * Specialized systems
 * Attacks against specialized environments
 
-### Module 8 — Post-Exploitation & Persistence
+### Module 8 — Post-Exploitation, Persistence, Lateral Movement & Detection Avoidance
 
 * Persistence techniques
 * Reverse and bind shells
@@ -77,7 +83,7 @@ This repository documents key concepts related to ethical hacking, penetration t
 * User creation
 * Post-exploitation concepts
 
-### Module 9 — Penetration Testing Reporting
+### Module 9 — Penetration Testing Reporting & Post-Engagement
 
 * Penetration testing reports
 * Findings and risk ratings
@@ -145,7 +151,7 @@ Cisco-Ethical-Hacking/
 ├── Module 2 — Governance, Risk & Compliance.md
 ├── Module 3 — Vulnerability Scanning & Analysis.md
 ├── Module 4 — Social Engineering.md
-├── Module 5 — Wireless Security.md
+├── Module 5 — Exploiting Wireless Vulnerabilities.md
 ├── Module 6 — Web Application Security.md
 ├── Module 7 — Cloud & Specialized Systems Security.md
 ├── Module 8 — Post-Exploitation, Persistence, Lateral Movement & Detection Avoidance.md
