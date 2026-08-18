@@ -1,29 +1,36 @@
-1. Module Overview
+# Module 6 — Web Application Security
+
+## 1. Module Overview
 
 Module 6 mainly focuses on:
 
-Web application security
-Insecure coding practices
-Authentication and session weaknesses
-Input validation
-API security
-Web application testing
-Techniques attackers use to exploit applications
-Main Idea
+* **Web application security**
+* **Insecure coding practices**
+* **Authentication and session weaknesses**
+* **Input validation**
+* **API security**
+* **Web application testing**
+* **Techniques attackers use to exploit applications**
 
-Security should not be added only after an application is completed.
+### Main Idea
 
-Security should be included from the beginning of the Software Development Lifecycle (SDLC).
+Security should **not** be added only after an application is completed.
+
+Security should be included from the beginning of the **Software Development Lifecycle (SDLC)**.
 
 This approach is called:
 
-Shift-Left Security
+> **Shift-Left Security**
 
-2. Shift-Left Security
+---
 
-Shift-Left Security means introducing security practices early in the software development lifecycle instead of waiting until the application is finished.
+# 2. Shift-Left Security
 
-Example
+**Shift-Left Security** means introducing security practices early in the software development lifecycle instead of waiting until the application is finished.
+
+### Example
+
+```text
 Developer writes code
         ↓
 Code is committed
@@ -33,458 +40,526 @@ Security scanner checks code
 Vulnerability is detected
         ↓
 Developer fixes the issue
-Why Is Shift-Left Important?
-Vulnerabilities can be discovered earlier.
-Bugs are generally easier to fix during development.
-Developers learn secure coding practices.
-Security problems are less likely to reach production.
-Easy Memory
+```
 
-Shift Left → Security Early
+### Why Is Shift-Left Important?
 
-3. Insecure Coding Practices
+* Vulnerabilities can be discovered earlier.
+* Bugs are generally easier to fix during development.
+* Developers learn secure coding practices.
+* Security problems are less likely to reach production.
+
+> **Easy Memory:** Shift Left → **Security Early**
+
+---
+
+# 3. Insecure Coding Practices
 
 Insecure coding practices can introduce vulnerabilities that attackers may exploit.
 
-Important Examples
-Sensitive information in source-code comments
-Improper error handling
-Hard-coded credentials
-Race conditions
-Unprotected APIs
-Hidden form fields
-Lack of code signing
-4. Sensitive Information in Comments
+### Important Examples
+
+* Sensitive information in source-code comments
+* Improper error handling
+* Hard-coded credentials
+* Race conditions
+* Unprotected APIs
+* Hidden form fields
+* Lack of code signing
+
+---
+
+# 4. Sensitive Information in Comments
 
 Developers sometimes accidentally leave sensitive information inside source-code comments.
 
-Example
+### Example
+
+```javascript
 // Database password: admin123
 // API key: ABC123
 // Temporary admin account: testadmin
+```
 
 If an attacker obtains the source code, these secrets may be exposed.
 
-CWE-615
+### CWE-615
 
-CWE-615 — Information Exposure Through Comments
+**CWE-615 — Information Exposure Through Comments**
 
-Comments Should Never Contain
-Passwords
-API keys
-Authentication tokens
-Private keys
-Internal secrets
-Easy Memory
+### Comments Should Never Contain
 
-Comments → No Secrets
+* Passwords
+* API keys
+* Authentication tokens
+* Private keys
+* Internal secrets
 
-5. Improper / Verbose Error Handling
+> **Easy Memory:** Comments → **No Secrets**
+
+---
+
+# 5. Improper / Verbose Error Handling
 
 Applications sometimes reveal too much information when an error occurs.
 
-Dangerous Error Information
+### Dangerous Error Information
 
 An error message might reveal:
 
-Database errors
-SQL statements
-Stack traces
-File paths
-Software versions
-Error codes
-Internal configuration
+* Database errors
+* SQL statements
+* Stack traces
+* File paths
+* Software versions
+* Error codes
+* Internal configuration
 
 This information can help attackers understand the application's internal structure.
 
-Bad Example
+### Bad Example
+
+```text
 SQL Error: MySQL syntax error near users.php line 42
-Better Example
+```
+
+### Better Example
+
+```text
 An unexpected error occurred.
 Please try again later.
+```
 
-Detailed diagnostic information should be available to developers, but should not normally be exposed to users.
+Detailed diagnostic information should be available to developers, but should **not normally be exposed to users**.
 
-Easy Memory
+> **Easy Memory:** Detailed Error → **Information Leakage**
 
-Detailed Error → Information Leakage
+---
 
-6. Hard-Coded Credentials
+# 6. Hard-Coded Credentials
 
 Hard-coded credentials are usernames, passwords, API keys, or other secrets directly embedded inside application code.
 
-Example
+### Example
+
+```javascript
 username = "admin"
 password = "Password123"
+```
 
 This is dangerous because anyone who obtains the source code may obtain the credentials.
 
-CWE-798
+### CWE-798
 
-CWE-798 — Use of Hard-coded Credentials
+**CWE-798 — Use of Hard-coded Credentials**
 
-Possible Impact
+### Possible Impact
 
 An attacker may gain access to:
 
-Applications
-Databases
-Servers
-APIs
-Other systems
-Better Approach
+* Applications
+* Databases
+* Servers
+* APIs
+* Other systems
+
+### Better Approach
 
 Use:
 
-Secret management systems
-Environment variables
-Credential vaults
-Key-management systems
-Easy Memory
+* Secret management systems
+* Environment variables
+* Credential vaults
+* Key-management systems
 
-Hard-coded Password = Dangerous
+> **Easy Memory:** Hard-coded Password = **Dangerous**
 
-7. Race Conditions
+---
 
-A race condition occurs when multiple operations happen close together or simultaneously, but the application expects them to occur in a specific order.
+# 7. Race Conditions
+
+A **race condition** occurs when multiple operations happen close together or simultaneously, but the application expects them to occur in a specific order.
 
 An attacker may exploit a small timing window between two operations.
 
-TOCTOU
+### TOCTOU
 
 Race conditions are commonly associated with:
 
-Time-of-Check to Time-of-Use
+**Time-of-Check to Time-of-Use**
 
-Simple Example
+### Simple Example
 
 An application:
 
-Checks whether an account has enough money.
-Performs the withdrawal.
+1. Checks whether an account has enough money.
+2. Performs the withdrawal.
 
 If multiple requests are processed at nearly the same time, an attacker may attempt to exploit the timing window and withdraw more than should be allowed.
 
-Important Point
+### Important Point
 
 Race-condition attacks can be difficult because precise timing is often required.
 
-Easy Memory
+> **Easy Memory:** Race Condition → **Timing + Wrong Sequence**
 
-Race Condition → Timing + Wrong Sequence
+---
 
-8. APIs
+# 8. APIs
 
-API = Application Programming Interface
+**API = Application Programming Interface**
 
 APIs allow different applications and systems to communicate with each other.
 
-Examples
-Mobile applications communicating with servers
-Websites communicating with backend services
-Online dashboards
-Payment systems
-Cloud services
+### Examples
 
-Modern applications heavily depend on APIs, making API security extremely important.
+* Mobile applications communicating with servers
+* Websites communicating with backend services
+* Online dashboards
+* Payment systems
+* Cloud services
 
-9. Major API Technologies
+Modern applications heavily depend on APIs, making **API security extremely important**.
+
+---
+
+# 9. Major API Technologies
 
 There are three important API technologies discussed in this module:
 
-SOAP
+## SOAP
 
-SOAP = Simple Object Access Protocol
+**SOAP = Simple Object Access Protocol**
 
-Characteristics
-Standards-based web-services protocol
-Uses XML
-Has a strict messaging structure
-Commonly found in older or legacy applications
-Easy Memory
+### Characteristics
 
-SOAP → XML
+* Standards-based web-services protocol
+* Uses XML
+* Has a strict messaging structure
+* Commonly found in older or legacy applications
 
-REST
+> **Easy Memory:** SOAP → **XML**
 
-REST = Representational State Transfer
+---
 
-Characteristics
-Commonly uses HTTP
-Frequently uses JSON
-Generally simpler than SOAP
-Very common in modern applications
-Often documented using Swagger/OpenAPI
-Easy Memory
+## REST
 
-REST → JSON + HTTP
+**REST = Representational State Transfer**
 
-GraphQL
+### Characteristics
 
-GraphQL is a query language for APIs.
+* Commonly uses HTTP
+* Frequently uses JSON
+* Generally simpler than SOAP
+* Very common in modern applications
+* Often documented using Swagger/OpenAPI
+
+> **Easy Memory:** REST → **JSON + HTTP**
+
+---
+
+## GraphQL
+
+**GraphQL** is a query language for APIs.
 
 It is commonly used by:
 
-Mobile applications
-Web applications
-Online dashboards
-Easy Memory
+* Mobile applications
+* Web applications
+* Online dashboards
 
-GraphQL → Query Language
+> **Easy Memory:** GraphQL → **Query Language**
 
-10. SOAP vs REST vs GraphQL
-Technology	Main Characteristic
-SOAP	XML-based web-services protocol
-REST	API style commonly using JSON and HTTP
-GraphQL	Query language for APIs
-Easy Memory
+---
 
-SOAP → XML
+# 10. SOAP vs REST vs GraphQL
 
-REST → JSON + HTTP
+| Technology  | Main Characteristic                    |
+| ----------- | -------------------------------------- |
+| **SOAP**    | XML-based web-services protocol        |
+| **REST**    | API style commonly using JSON and HTTP |
+| **GraphQL** | Query language for APIs                |
 
-GraphQL → Query
+### Easy Memory
 
-11. HTTPS and TLS
+* **SOAP → XML**
+* **REST → JSON + HTTP**
+* **GraphQL → Query**
 
-APIs should use HTTPS rather than plain HTTP.
+---
 
-HTTPS
+# 11. HTTPS and TLS
+
+APIs should use **HTTPS** rather than plain HTTP.
+
+### HTTPS
 
 HTTPS is the secure version of HTTP.
 
 It uses:
 
-TLS — Transport Layer Security
+**TLS — Transport Layer Security**
 
 TLS encrypts communication between the client and server.
 
-Purpose
+### Purpose
 
 It helps protect sensitive information while it travels across the network.
 
-Easy Memory
+> **Easy Memory:** HTTPS → **HTTP + TLS**
 
-HTTPS → HTTP + TLS
+---
 
-12. API Documentation
+# 12. API Documentation
 
 API documentation can reveal how an application works.
 
 For penetration testers, it may provide information about:
 
-Endpoints
-Parameters
-Requests
-Data structures
-Authentication
-Available functionality
-Important Documentation Formats
-Swagger / OpenAPI
+* Endpoints
+* Parameters
+* Requests
+* Data structures
+* Authentication
+* Available functionality
+
+### Important Documentation Formats
+
+#### Swagger / OpenAPI
 
 Used for:
 
-Designing APIs
-Documenting APIs
-Developing APIs
-WSDL
+* Designing APIs
+* Documenting APIs
+* Developing APIs
 
-WSDL = Web Services Description Language
+#### WSDL
 
-XML-based
-Used to describe web services
-WADL
+**WSDL = Web Services Description Language**
 
-WADL = Web Application Description Language
+* XML-based
+* Used to describe web services
 
-XML-based
-Used to describe web applications
-13. API Testing During Penetration Testing
+#### WADL
 
-When testing an API, do not look only at the URL.
+**WADL = Web Application Description Language**
 
-Capture and analyze the complete HTTP request.
+* XML-based
+* Used to describe web applications
 
-Useful Tools
-Burp Suite
-OWASP ZAP
+---
+
+# 13. API Testing During Penetration Testing
+
+When testing an API, do **not look only at the URL**.
+
+Capture and analyze the **complete HTTP request**.
+
+### Useful Tools
+
+* **Burp Suite**
+* **OWASP ZAP**
 
 These tools can capture HTTP/HTTPS requests and responses.
 
-Look For
-Unusual parameters
-HTTP headers
-IDs in URLs
-Numbers that change between requests
-Dates
-JSON parameters
-XML parameters
-Other structured values
+### Look For
+
+* Unusual parameters
+* HTTP headers
+* IDs in URLs
+* Numbers that change between requests
+* Dates
+* JSON parameters
+* XML parameters
+* Other structured values
 
 These can provide clues about how the application processes data.
 
-Easy Memory
+> **Easy Memory:** API Testing → **Analyze the Full Request**
 
-API Testing → Analyze the Full Request
+---
 
-14. API Parameter Enumeration
+# 14. API Parameter Enumeration
 
 Suppose you observe:
 
+```text
 /s/abcd/page
 /s/dead/page
 /s/beef/page
+```
 
 The changing values:
 
+```text
 abcd
 dead
 beef
+```
 
-may represent an API parameter rather than an actual directory.
+may represent an **API parameter** rather than an actual directory.
 
 Identifying changing parameters helps testers understand how the application handles requests and resources.
 
-15. API Fuzzing
+---
 
-Fuzzing is an automated testing technique that sends unexpected, malformed, or unusual input to an application.
+# 15. API Fuzzing
 
-Goals of Fuzzing
+**Fuzzing** is an automated testing technique that sends unexpected, malformed, or unusual input to an application.
+
+### Goals of Fuzzing
 
 Fuzzing can identify:
 
-Application crashes
-Input-validation problems
-Unexpected behavior
-Security vulnerabilities
-Example Inputs
+* Application crashes
+* Input-validation problems
+* Unexpected behavior
+* Security vulnerabilities
+
+### Example Inputs
 
 A tester may send:
 
-Very large values
-Special characters
-Unicode characters
-Invalid data types
-Unexpected parameters
+* Very large values
+* Special characters
+* Unicode characters
+* Invalid data types
+* Unexpected parameters
 
 The tester then observes how the application responds.
 
-Easy Memory
+> **Easy Memory:** Fuzzing → **Strange Input → Observe Response**
 
-Fuzzing → Strange Input → Observe Response
+---
 
-16. Radamsa
+# 16. Radamsa
 
-Radamsa is a fuzzing tool that generates modified or malformed test data.
+**Radamsa** is a fuzzing tool that generates modified or malformed test data.
 
 It can be used to test:
 
-Applications
-Protocols
-Parameters
-Purpose
+* Applications
+* Protocols
+* Parameters
+
+### Purpose
 
 Generate unusual input that may reveal unexpected application behavior.
 
-Easy Memory
+> **Easy Memory:** Radamsa → **Fuzzing Data Generator**
 
-Radamsa → Fuzzing Data Generator
+---
 
-17. API Security Best Practices
+# 17. API Security Best Practices
 
 Important API security practices include:
 
-1. Use HTTPS
+### 1. Use HTTPS
 
 Use HTTPS with strong and properly configured TLS.
 
-2. Validate Parameters
+### 2. Validate Parameters
 
 Verify that incoming parameters contain valid and expected data.
 
-3. Sanitize Input
+### 3. Sanitize Input
 
 Handle input safely before processing it.
 
-4. Detect Attack Patterns
+### 4. Detect Attack Patterns
 
 Monitor for malicious input and common attack patterns.
 
-5. Use Strong Authentication
+### 5. Use Strong Authentication
 
 Properly verify users and systems.
 
-6. Use Strong Authorization
+### 6. Use Strong Authorization
 
 Users should only access resources they are authorized to access.
 
-7. Use Reputable Libraries
+### 7. Use Reputable Libraries
 
 Use trusted and maintained libraries.
 
-8. Separate API Security From Application Logic
+### 8. Separate API Security From Application Logic
 
 Security controls can be implemented in a separate security layer where appropriate.
 
-9. Identify Sensitive Data
+### 9. Identify Sensitive Data
 
 Classify information as:
 
-Public
-Internal
-Sensitive
-Confidential
-10. Perform Security Reviews
+* Public
+* Internal
+* Sensitive
+* Confidential
+
+### 10. Perform Security Reviews
 
 Security professionals should review API implementations and controls whenever possible.
 
-18. Hidden Elements
+---
+
+# 18. Hidden Elements
 
 Web applications may contain hidden HTML form fields.
 
-Example
+### Example
+
+```html
 <input type="hidden" name="price" value="100.00">
+```
 
 Although the field is not visible to the user, the value is still sent to the server.
 
 An attacker may modify it.
 
-Example
+### Example
 
-Original:
+**Original:**
 
+```text
 price=100
+```
 
-Modified:
+**Modified:**
 
+```text
 price=1
+```
 
-If the server blindly trusts this value, the application may be vulnerable to parameter tampering.
+If the server blindly trusts this value, the application may be vulnerable to **parameter tampering**.
 
-Important
+### Important
 
-Hidden does NOT mean Secure.
+> **Hidden does NOT mean Secure.**
 
 The server must independently validate important values.
 
-Hidden fields can have legitimate purposes, including some CSRF-related mechanisms, so a hidden field is not automatically a vulnerability.
+Hidden fields can have legitimate purposes, including some CSRF-related mechanisms, so a hidden field is **not automatically a vulnerability**.
 
-Easy Memory
+> **Easy Memory:** Hidden ≠ **Secure**
 
-Hidden ≠ Secure
+---
 
-19. Code Signing
+# 19. Code Signing
 
-Code signing uses a digital signature to verify that software:
+**Code signing** uses a digital signature to verify that software:
 
-Comes from the expected developer/source.
-Has not been modified after signing.
-It Uses
-Private keys
-Public keys
-Digital signatures
-Trusted certificate authorities where applicable
-Basic Process
+* Comes from the expected developer/source.
+* Has not been modified after signing.
+
+### It Uses
+
+* Private keys
+* Public keys
+* Digital signatures
+* Trusted certificate authorities where applicable
+
+### Basic Process
+
+```text
 Developer
    ↓
 Software
@@ -494,22 +569,25 @@ Sign with Private Key
 Signed Software
    ↓
 Verify with Public Key
+```
 
 If the software is modified after signing, signature verification may fail.
 
-Easy Memory
+> **Easy Memory:** Code Signing → **Authenticity + Integrity**
 
-Code Signing → Authenticity + Integrity
+---
 
-20. Subresource Integrity (SRI)
+# 20. Subresource Integrity (SRI)
 
-SRI = Subresource Integrity
+**SRI = Subresource Integrity**
 
 SRI allows a web page to specify a cryptographic hash for an external resource.
 
 The browser compares the downloaded resource against the expected hash.
 
-Basic Process
+### Basic Process
+
+```text
 Expected Hash
       ↓
 Downloaded Resource
@@ -518,120 +596,148 @@ Hash Comparison
       ↓
 Match → Accepted
 Mismatch → Rejected
-Protects Resources Such As
-JavaScript files
-Other externally loaded resources
-Easy Memory
+```
 
-SRI → Hash → Resource Integrity
+### Protects Resources Such As
 
-21. Web Proxies
+* JavaScript files
+* Other externally loaded resources
+
+> **Easy Memory:** SRI → **Hash → Resource Integrity**
+
+---
+
+# 21. Web Proxies
 
 A web proxy can sit between a browser and a web application.
 
+```text
 Browser
    ↕
 Proxy
    ↕
 Web Application
+```
 
 A penetration tester can use a proxy to:
 
-Intercept requests
-Inspect requests
-Modify requests
-Forward requests
-Analyze responses
+* Intercept requests
+* Inspect requests
+* Modify requests
+* Forward requests
+* Analyze responses
 
 Web proxies are extremely useful during web application security testing.
 
-22. Burp Suite
+---
 
-Burp Suite is a popular web application security testing platform.
+# 22. Burp Suite
+
+**Burp Suite** is a popular web application security testing platform.
 
 It includes a proxy that can intercept HTTP/HTTPS traffic.
 
-Editions
-Community Edition
-Professional Edition
-Common Uses
-Intercepting requests
-Modifying parameters
-Examining cookies
-Testing authentication
-Testing authorization
-Analyzing application behavior
-Easy Memory
+### Editions
 
-Burp Suite → Web Proxy + Security Testing
+* Community Edition
+* Professional Edition
 
-23. OWASP ZAP
+### Common Uses
 
-OWASP ZAP = Zed Attack Proxy
+* Intercepting requests
+* Modifying parameters
+* Examining cookies
+* Testing authentication
+* Testing authorization
+* Analyzing application behavior
+
+> **Easy Memory:** Burp Suite → **Web Proxy + Security Testing**
+
+---
+
+# 23. OWASP ZAP
+
+**OWASP ZAP = Zed Attack Proxy**
 
 It is a free and open-source web application security testing tool.
 
-Features
-Web proxy
-Automated scanning
-Fuzzing
-Vulnerability detection
+### Features
+
+* Web proxy
+* Automated scanning
+* Fuzzing
+* Vulnerability detection
 
 ZAP can help security testers identify and investigate vulnerabilities in web applications.
 
-Easy Memory
+> **Easy Memory:** ZAP → **Proxy + Scan + Fuzz**
 
-ZAP → Proxy + Scan + Fuzz
+---
 
-24. Burp Suite vs OWASP ZAP
-Feature	Burp Suite	OWASP ZAP
-Web Proxy	✅	✅
-Intercept Traffic	✅	✅
-Modify Requests	✅	✅
-Automated Scanning	✅	✅
-Fuzzing	✅	✅
-Free Version	Community Edition	Free/Open Source
-Important Question
+# 24. Burp Suite vs OWASP ZAP
 
-Which tools can intercept and forward web traffic?
+| Feature            | Burp Suite        | OWASP ZAP        |
+| ------------------ | ----------------- | ---------------- |
+| Web Proxy          | ✅                 | ✅                |
+| Intercept Traffic  | ✅                 | ✅                |
+| Modify Requests    | ✅                 | ✅                |
+| Automated Scanning | ✅                 | ✅                |
+| Fuzzing            | ✅                 | ✅                |
+| Free Version       | Community Edition | Free/Open Source |
 
-Answer:
+### Important Question
 
-Burp Suite
-OWASP ZAP
-25. Directory and File Enumeration Tools
+**Which tools can intercept and forward web traffic?**
+
+**Answer:**
+
+* **Burp Suite**
+* **OWASP ZAP**
+
+---
+
+# 25. Directory and File Enumeration Tools
 
 These tools help discover files and directories on web servers.
 
-Gobuster
-Written in Go
-Directory/file enumeration
-Uses wordlists
-FFUF
-Written in Go
-Fast web fuzzer
-Web enumeration and fuzzing
-Feroxbuster
-Written in Rust
-Web reconnaissance
-Fuzzing
-DirBuster
-Discovers directories and files on web servers
-Easy Memory
+### Gobuster
 
-Gobuster → Enumeration
+* Written in Go
+* Directory/file enumeration
+* Uses wordlists
 
-FFUF → Fast Fuzzing
+### FFUF
 
-Feroxbuster → Recon + Fuzzing
+* Written in Go
+* Fast web fuzzer
+* Web enumeration and fuzzing
 
-DirBuster → Directory Discovery
+### Feroxbuster
 
-26. Wordlists
+* Written in Rust
+* Web reconnaissance
+* Fuzzing
 
-A wordlist is a file containing many possible values that a tool can test.
+### DirBuster
 
-Example
+* Discovers directories and files on web servers
+
+### Easy Memory
+
+* **Gobuster → Enumeration**
+* **FFUF → Fast Fuzzing**
+* **Feroxbuster → Recon + Fuzzing**
+* **DirBuster → Directory Discovery**
+
+---
+
+# 26. Wordlists
+
+A **wordlist** is a file containing many possible values that a tool can test.
+
+### Example
+
+```text
 admin
 login
 dashboard
@@ -639,157 +745,210 @@ backup
 uploads
 api
 config
+```
 
 Enumeration tools use these values to determine whether corresponding resources exist.
 
-Easy Memory
+> **Easy Memory:** Wordlist → **List of Possible Names**
 
-Wordlist → List of Possible Names
+---
 
-27. OWASP WSTG
+# 27. OWASP WSTG
 
-OWASP WSTG = OWASP Web Security Testing Guide
+**OWASP WSTG = OWASP Web Security Testing Guide**
 
 It is an important reference for web application security testing.
 
-It Provides Guidance On
-Web application security testing
-Vulnerability identification
-Testing methodologies
-Security recommendations
-Vulnerability mitigation
-Easy Memory
+### It Provides Guidance On
 
-WSTG → Web Security Testing Guide
+* Web application security testing
+* Vulnerability identification
+* Testing methodologies
+* Security recommendations
+* Vulnerability mitigation
 
-28. ZAP + WSTG
+> **Easy Memory:** WSTG → **Web Security Testing Guide**
+
+---
+
+# 28. ZAP + WSTG
 
 The module demonstrates combining:
 
-OWASP WSTG → Methodology & Reference
+**OWASP WSTG → Methodology & Reference**
 
 with:
 
-OWASP ZAP → Practical Testing & Scanning
+**OWASP ZAP → Practical Testing & Scanning**
 
-Together They Help Testers
-Identify potential vulnerabilities.
-Investigate findings.
-Understand vulnerabilities.
-Determine underlying causes.
-Identify appropriate mitigation.
-Easy Memory
+### Together They Help Testers
 
-WSTG = How to Test
+* Identify potential vulnerabilities.
+* Investigate findings.
+* Understand vulnerabilities.
+* Determine underlying causes.
+* Identify appropriate mitigation.
 
-ZAP = Tool to Test
+> **Easy Memory:**
+> **WSTG = How to Test**
+> **ZAP = Tool to Test**
 
-29. Important Vulnerability Concepts
-Information Exposure
+---
+
+# 29. Important Vulnerability Concepts
+
+## Information Exposure
 
 Sensitive information is accidentally exposed to unauthorized users.
 
-Improper Error Handling
+## Improper Error Handling
 
 Application errors reveal information that may help attackers.
 
-Hard-Coded Credentials
+## Hard-Coded Credentials
 
 Credentials are directly embedded into source code.
 
-Race Condition
+## Race Condition
 
 An attacker exploits timing or an incorrect sequence between operations.
 
-API Security Issues
+## API Security Issues
 
 APIs may lack:
 
-Authentication
-Authorization
-Input validation
-Other necessary security controls
-Parameter Tampering
+* Authentication
+* Authorization
+* Input validation
+* Other necessary security controls
+
+## Parameter Tampering
 
 An attacker modifies application parameters to change application behavior.
 
-Lack of Code Signing
+## Lack of Code Signing
 
 Software authenticity and integrity cannot be reliably verified.
 
-30. Important CWE Numbers
-CWE	Vulnerability
-CWE-615	Information Exposure Through Comments
-CWE-798	Use of Hard-coded Credentials
-CWE-227	API Abuse
-Easy Memory
+---
 
-CWE-615 → Comments
+# 30. Important CWE Numbers
 
-CWE-798 → Credentials
+| CWE         | Vulnerability                         |
+| ----------- | ------------------------------------- |
+| **CWE-615** | Information Exposure Through Comments |
+| **CWE-798** | Use of Hard-coded Credentials         |
+| **CWE-227** | API Abuse                             |
 
-CWE-227 → API Abuse
+### Easy Memory
 
-31. Tools to Remember
-Tool	Main Purpose
-Burp Suite	Web proxy and security testing
-OWASP ZAP	Proxy, scanning and fuzzing
-Gobuster	Directory/file enumeration
-FFUF	Fast web fuzzing
-Feroxbuster	Web reconnaissance/fuzzing
-DirBuster	Directory enumeration
-Radamsa	Fuzzing/test-data generation
-32. High-Value Concepts
-Shift Left
+* **CWE-615 → Comments**
+* **CWE-798 → Credentials**
+* **CWE-227 → API Abuse**
+
+---
+
+# 31. Tools to Remember
+
+| Tool            | Main Purpose                   |
+| --------------- | ------------------------------ |
+| **Burp Suite**  | Web proxy and security testing |
+| **OWASP ZAP**   | Proxy, scanning and fuzzing    |
+| **Gobuster**    | Directory/file enumeration     |
+| **FFUF**        | Fast web fuzzing               |
+| **Feroxbuster** | Web reconnaissance/fuzzing     |
+| **DirBuster**   | Directory enumeration          |
+| **Radamsa**     | Fuzzing/test-data generation   |
+
+---
+
+# 32. High-Value Concepts
+
+## Shift Left
 
 Security testing should begin early in the development lifecycle.
 
-Hidden ≠ Secure
+> **Shift Left → Security Early**
+
+## Hidden ≠ Secure
 
 A hidden HTML field can still be modified by the client.
 
-Error Messages
+## Error Messages
 
 Detailed errors can reveal useful information to attackers.
 
-Hard-Coded Credentials
+## Hard-Coded Credentials
 
 Passwords, API keys and secrets should not be embedded directly into source code.
 
-Race Condition
+## Race Condition
 
 Think:
 
-Timing + Incorrect Sequence + Small Exploitation Window
+> **Timing + Incorrect Sequence + Small Exploitation Window**
 
-API Testing
+## API Testing
 
 Do not inspect only URLs.
 
-Capture and analyze the complete HTTP request.
+Capture and analyze the **complete HTTP request**.
 
-Fuzzing
-
-Think:
-
-Unusual/Malformed Input → Application Response
-
-Code Signing
+## Fuzzing
 
 Think:
 
-Digital Signature → Authenticity + Integrity
+> **Unusual/Malformed Input → Application Response**
 
-SRI
-
-Think:
-
-Cryptographic Hash → External Resource Integrity
-
-Web Proxy
+## Code Signing
 
 Think:
 
-Browser → Proxy → Server
+> **Digital Signature → Authenticity + Integrity**
 
-A proxy allows security testers to intercept, inspect and modify HTTP/HTTPS traffic.
+## SRI
+
+Think:
+
+> **Cryptographic Hash → External Resource Integrity**
+
+## Web Proxy
+
+Think:
+
+> **Browser → Proxy → Server**
+
+A proxy allows security testers to **intercept, inspect and modify HTTP/HTTPS traffic**.
+
+---
+
+# Module 6 Quick Revision
+
+| Concept                 | Remember                  |
+| ----------------------- | ------------------------- |
+| **Shift-Left Security** | Security Early            |
+| **CWE-615**             | Information in Comments   |
+| **CWE-798**             | Hard-coded Credentials    |
+| **Race Condition**      | Timing + Wrong Sequence   |
+| **SOAP**                | XML                       |
+| **REST**                | JSON + HTTP               |
+| **GraphQL**             | Query Language            |
+| **HTTPS**               | HTTP + TLS                |
+| **Fuzzing**             | Strange Input → Response  |
+| **Radamsa**             | Fuzzing Data Generator    |
+| **Hidden Fields**       | Hidden ≠ Secure           |
+| **Code Signing**        | Authenticity + Integrity  |
+| **SRI**                 | Hash → Resource Integrity |
+| **Burp Suite**          | Proxy + Security Testing  |
+| **OWASP ZAP**           | Proxy + Scan + Fuzz       |
+| **Gobuster**            | Enumeration               |
+| **FFUF**                | Fast Fuzzing              |
+| **Feroxbuster**         | Recon + Fuzzing           |
+| **DirBuster**           | Directory Discovery       |
+| **WSTG**                | How to Test               |
+
+---
+
+## Module 6 Key Takeaway
+
+**Web application security should be built into the application from the beginning, APIs and inputs must be properly secured, sensitive information must not be exposed, and security testing tools such as Burp Suite and OWASP ZAP can be used to intercept, analyze, fuzz, and test web applications.**
