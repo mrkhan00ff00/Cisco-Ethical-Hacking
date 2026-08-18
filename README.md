@@ -48,13 +48,22 @@ This repository documents key concepts related to ethical hacking, penetration t
 * Evil Twin attacks
 * Deauthentication attacks
 * Wireless reconnaissance
-* WEP and WPA/WPA2 security
+* Hidden SSIDs
+* Preferred Network List attacks
+* Wireless signal jamming
+* War driving
+* WEP and IV attacks
+* WPA/WPA2 attacks
 * KRACK
 * WPA3 vulnerabilities
 * WPS attacks
 * KARMA attacks
+* Wireless fragmentation attacks
+* Credential harvesting
 * Bluetooth security
 * RFID attacks
+* Password spraying
+* Exploit chaining
 
 ### Module 6 — Web Application Security
 
@@ -142,22 +151,17 @@ The purpose of this repository is educational and professional development.
 
 ## 📖 Repository Structure
 
-Each module is maintained as a separate Markdown file for easier reading and reference.
+The repository is organized into separate Markdown files, with each file covering a specific module from the Cisco Ethical Hacker course.
 
-```text
-Cisco-Ethical-Hacking/
-│
-├── Module 1 — Ethical Hacking and Penetration Testing.md
-├── Module 2 — Governance, Risk & Compliance.md
-├── Module 3 — Vulnerability Scanning & Analysis.md
-├── Module 4 — Social Engineering.md
-├── Module 5 — Exploiting Wireless Vulnerabilities.md
-├── Module 6 — Web Application Security.md
-├── Module 7 — Cloud & Specialized Systems Security.md
-├── Module 8 — Post-Exploitation, Persistence, Lateral Movement & Detection Avoidance.md
-├── Module 9 — Penetration Testing Reporting & Post-Engagement.md
-└── README.md
-```
+* Module 1 — Ethical Hacking and Penetration Testing
+* Module 2 — Governance, Risk & Compliance
+* Module 3 — Vulnerability Scanning & Analysis
+* Module 4 — Social Engineering
+* Module 5 — Exploiting Wireless Vulnerabilities
+* Module 6 — Web Application Security
+* Module 7 — Cloud & Specialized Systems Security
+* Module 8 — Post-Exploitation, Persistence, Lateral Movement & Detection Avoidance
+* Module 9 — Penetration Testing Reporting & Post-Engagement
 
 ---
 
