@@ -1,4 +1,3 @@
-
 # Cisco Ethical Hacking
 
 A structured collection of my learning notes and knowledge from the **Cisco Ethical Hacker** course.
@@ -10,92 +9,101 @@ This repository documents key concepts related to ethical hacking, penetration t
 ## 📚 Course Modules
 
 ### Module 1 — Ethical Hacking & Penetration Testing
-- Ethical hacking fundamentals
-- Penetration testing concepts
-- Penetration testing methodologies
-- Building a penetration testing lab
+
+* Ethical hacking fundamentals
+* Penetration testing concepts
+* Penetration testing methodologies
+* Building a penetration testing lab
 
 ### Module 2 — Governance, Risk & Compliance
-- Governance
-- Risk management
-- Compliance
-- Security regulations and standards
-- PCI DSS
-- HIPAA
-- GDPR
+
+* Governance
+* Risk management
+* Compliance
+* Security regulations and standards
+* PCI DSS
+* HIPAA
+* GDPR
 
 ### Module 3 — Vulnerability Scanning & Analysis
-- Vulnerability assessment
-- Vulnerability scanning
-- Scanning techniques
-- Vulnerability analysis
+
+* Vulnerability assessment
+* Vulnerability scanning
+* Scanning techniques
+* Vulnerability analysis
 
 ### Module 4 — Social Engineering
-- Social engineering
-- Pretexting
-- Elicitation
-- Impersonation
-- Phishing
-- Human-based attacks
+
+* Social engineering
+* Pretexting
+* Elicitation
+* Impersonation
+* Phishing
+* Human-based attacks
 
 ### Module 5 — Wireless Security
-- Wireless vulnerabilities
-- Rogue access points
-- Evil Twin attacks
-- Deauthentication
-- WEP/WPA security
-- Wireless attack techniques
+
+* Wireless vulnerabilities
+* Rogue access points
+* Evil Twin attacks
+* Deauthentication
+* WEP/WPA security
+* Wireless attack techniques
 
 ### Module 6 — Web Application Security
-- Web application vulnerabilities
-- Insecure coding practices
-- Web attacks
-- Authentication and session security
-- Common web security issues
+
+* Web application vulnerabilities
+* Insecure coding practices
+* Web attacks
+* Authentication and session security
+* Common web security issues
 
 ### Module 7 — Cloud & Specialized Systems Security
-- Cloud attack vectors
-- Cloud security concepts
-- Specialized systems
-- Attacks against specialized environments
+
+* Cloud attack vectors
+* Cloud security concepts
+* Specialized systems
+* Attacks against specialized environments
 
 ### Module 8 — Post-Exploitation & Persistence
-- Persistence techniques
-- Reverse and bind shells
-- Netcat
-- Meterpreter
-- Command and Control
-- Scheduled tasks
-- Daemons
-- User creation
-- Post-exploitation concepts
+
+* Persistence techniques
+* Reverse and bind shells
+* Netcat
+* Meterpreter
+* Command and Control
+* Scheduled tasks
+* Daemons
+* User creation
+* Post-exploitation concepts
 
 ### Module 9 — Penetration Testing Reporting
-- Penetration testing reports
-- Findings and risk ratings
-- Communication during penetration testing
-- False positives and false negatives
-- Reproducible findings
-- Post-engagement cleanup
-- Retesting
-- Lessons learned
-- Data destruction
+
+* Penetration testing reports
+* Findings and risk ratings
+* Communication during penetration testing
+* False positives and false negatives
+* Reproducible findings
+* Post-engagement cleanup
+* Retesting
+* Lessons learned
+* Data destruction
 
 ---
 
 ## 🛠️ Tools & Technologies
 
-- Kali Linux
-- Nmap
-- Burp Suite
-- Metasploit
-- SQLmap
-- Nessus
-- Greenbone
-- Wireshark
-- Netcat
-- Meterpreter
-- VMware
+* Kali Linux
+* Nmap
+* Burp Suite
+* Metasploit
+* SQLmap
+* Nessus
+* Greenbone
+* Wireshark
+* Netcat
+* Meterpreter
+* VMware
 
 ---
 
@@ -103,18 +111,18 @@ This repository documents key concepts related to ethical hacking, penetration t
 
 Through this course, I developed knowledge of:
 
-- Ethical hacking
-- Penetration testing
-- Vulnerability assessment
-- Web application security
-- Wireless security
-- Social engineering
-- Network security
-- Cloud security
-- Post-exploitation
-- Security reporting
-- Risk assessment
-- Security controls
+* Ethical hacking
+* Penetration testing
+* Vulnerability assessment
+* Web application security
+* Wireless security
+* Social engineering
+* Network security
+* Cloud security
+* Post-exploitation
+* Security reporting
+* Risk assessment
+* Security controls
 
 ---
 
@@ -133,17 +141,17 @@ Each module is maintained as a separate Markdown file for easier reading and ref
 ```text
 Cisco-Ethical-Hacking/
 │
-├── Module 1
-├── Module 2
-├── Module 3
-├── Module 4
-├── Module 5
-├── Module 6
-├── Module 7
-├── Module 8
-├── Module 9
+├── Module 1 — Ethical Hacking and Penetration Testing.md
+├── Module 2 — Governance, Risk & Compliance.md
+├── Module 3 — Vulnerability Scanning & Analysis.md
+├── Module 4 — Social Engineering.md
+├── Module 5 — Wireless Security.md
+├── Module 6 — Web Application Security.md
+├── Module 7 — Cloud & Specialized Systems Security.md
+├── Module 8 — Post-Exploitation, Persistence, Lateral Movement & Detection Avoidance.md
+├── Module 9 — Penetration Testing Reporting & Post-Engagement.md
 └── README.md
-````
+```
 
 ---
 
@@ -167,4 +175,3 @@ Do not use these techniques against systems, networks, or applications without p
 
 BS Software Engineering Student
 Cybersecurity & Ethical Hacking Enthusiast
-
