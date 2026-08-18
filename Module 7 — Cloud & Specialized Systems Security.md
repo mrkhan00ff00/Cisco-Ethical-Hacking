@@ -1,26 +1,5 @@
 
 
-Module 7 focuses on security risks associated with cloud technologies and specialized systems.
-
-### Topics Covered
-
-- Cloud computing models
-- Cloud attack vectors
-- Credential harvesting
-- Privilege escalation
-- Account takeover
-- Metadata service attacks
-- Misconfigured cloud assets
-- Denial-of-Service and resource exhaustion
-- Malware injection
-- Side-channel attacks
-- Mobile security
-- IoT security
-- IoT protocols
-- Management interfaces
-- Virtual machine vulnerabilities
-- Container and Kubernetes security
-
 ### Main Idea
 
 Modern infrastructure is no longer limited to traditional servers.
